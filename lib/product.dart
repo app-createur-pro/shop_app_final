@@ -14,42 +14,42 @@ class Product {
           'Red shoes',
           loremIpsum,
           'assets/images/red-shoe.png',
-          Colors.red,
+          Color(0xffb8636f),
           123
         ),
         Product(
             'Black shoes',
             loremIpsum,
             'assets/images/black-shoe.png',
-            Colors.grey,
+            Color(0xff989796),
             87
         ),
         Product(
             'Blue shoes',
             loremIpsum,
             'assets/images/blue-shoe.png',
-            Colors.blue,
+            Color(0xff5c8ab0),
             152
         ),
         Product(
             'Orange shoes',
             loremIpsum,
             'assets/images/orange-shoe.png',
-            Colors.brown,
+            Color(0xffc1a78e),
             99
         ),
         Product(
             'B/W shoes',
             loremIpsum,
             'assets/images/black-and-white-shoe.png',
-            Colors.grey,
+            Color(0xff989796),
             89
         ),
         Product(
             'Turquoise shoes',
             loremIpsum,
             'assets/images/turquoise-shoe.png',
-            Colors.lightBlueAccent,
+            Color(0xff79c6c1),
             145
         ),
 
