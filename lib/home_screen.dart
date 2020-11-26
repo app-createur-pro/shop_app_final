@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_shop/product.dart';
+import 'package:my_shop/product_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -50,16 +51,27 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: _products[index].backgroundColor,
-                    borderRadius: BorderRadius.circular(10)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Image.asset(_products[index].image),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                          ProductDetailsScreen()
+                      )
+                    );
+                  },
+                  child: Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: _products[index].backgroundColor,
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Image.asset(_products[index].image),
+                    ),
                   ),
                 ),
                 Padding(
