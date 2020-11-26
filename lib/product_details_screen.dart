@@ -22,29 +22,82 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           )
         ],
       ),
-      backgroundColor: Colors.grey,
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          return Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                height: constraints.maxHeight,
-                color: Colors.purple,
-              ),
-              Container(
-                height: constraints.maxHeight * 0.6,
-                color: Colors.green,
-              ),
-              Positioned(
-                top: 5,
-                left: 5,
-                child: Image.asset(
-                  'assets/images/black-shoe.png',
-                  width: 200,
+          return SizedBox(
+            height: constraints.maxHeight,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: constraints.maxHeight*0.35,
+                    width: constraints.maxWidth,
+                    color: Colors.grey,
+                    child: Padding(
+                      padding: const EdgeInsets.all(14.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Sneakers Category",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              Text(
+                                "Product name",
+                                style: Theme.of(context).textTheme.headline4.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  "Price",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                              ),
+                              Text(
+                                  "120 €",
+                                style: Theme.of(context).textTheme.headline4.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              )
-            ],
+                Container(
+                  color: Colors.red,
+                  height: constraints.maxHeight * 0.65,
+                ),
+                Positioned(
+                  top: (constraints.maxHeight * 0.6)*0.35,
+                  left: constraints.maxWidth*0.35,
+                  child: Image.asset(
+                    'assets/images/black-shoe.png',
+                    width: constraints.maxWidth/2,
+                  ),
+                )
+              ],
+            ),
           );
         },
       ),
