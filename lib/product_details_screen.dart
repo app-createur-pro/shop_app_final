@@ -11,10 +11,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-    double appBarHeight = AppBar().preferredSize.height;
-    double screenPadding = MediaQuery.of(context).padding.top;
-    double screenHeight = (screenSize.height)-appBarHeight-screenPadding;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey,
@@ -27,28 +23,30 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ],
       ),
       backgroundColor: Colors.grey,
-      body: Container(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Container(
-              height: screenHeight,
-              color: Colors.purple,
-            ),
-            Container(
-              height: screenHeight*0.6,
-              color: Colors.green,
-            ),
-            Positioned(
-              top: 5,
-              left: 5,
-              child: Image.asset(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Container(
+                height: constraints.maxHeight,
+                color: Colors.purple,
+              ),
+              Container(
+                height: constraints.maxHeight * 0.6,
+                color: Colors.green,
+              ),
+              Positioned(
+                top: 5,
+                left: 5,
+                child: Image.asset(
                   'assets/images/black-shoe.png',
                   width: 200,
-              ),
-            )
-          ],
-        ),
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
