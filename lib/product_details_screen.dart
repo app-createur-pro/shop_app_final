@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:my_shop/themes.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   @override
@@ -101,10 +102,54 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         Row(
                           children: [
                             Expanded(
-                                child: Text("en stock")
+                                child: Text(
+                                    "En stock",
+                                  style: TextStyle(
+                                    color: kTextColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16
+                                  ),
+                                )
                             ),
                             Expanded(
-                                child: DropdownButton()
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey[200],
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+                                    child: DropdownButton(
+                                      hint: Text(
+                                        "sizes",
+                                        style: TextStyle(
+                                          color: kTextColor
+                                        ),
+                                      ),
+                                      value: "36",
+                                      underline: Container(),
+                                      icon: Icon(
+                                        Icons.arrow_drop_down,
+                                        color: Colors.grey,
+                                      ),
+                                      items: [
+                                        DropdownMenuItem(
+                                          value: "36",
+                                          child: Text(
+                                            "36"
+                                          ),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: "37",
+                                          child: Text(
+                                              "37"
+                                          ),
+                                        ),
+                                      ],
+                                      onChanged: (value) {
+
+                                      },
+                                    )
+                                )
                             )
                           ],
                         ),
@@ -115,17 +160,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           children: [
                             Expanded(
                               child: Container(
+                                padding: EdgeInsets.all(4),
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: Colors.grey
                                   ),
                                   shape: BoxShape.circle
                                 ),
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.remove,
-                                    size: 15,
-                                  )
+                                child: FittedBox(
+                                  child: IconButton(
+                                      padding: EdgeInsets.all(0),
+                                      icon: Icon(
+                                      Icons.remove,
+                                        size: 50,
+                                        color: kTextColor,
+                                    )
+                                  ),
                                 ),
                               ),
                             ),
@@ -136,17 +186,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             Expanded(
                               child: Container(
+                                padding: EdgeInsets.all(4),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.grey
                                     ),
                                     shape: BoxShape.circle
                                 ),
-                                child: IconButton(
-                                    icon: Icon(
-                                      Icons.add,
-                                      size: 15,
-                                    )
+                                child: FittedBox(
+                                  child: IconButton(
+                                      padding: EdgeInsets.all(0),
+                                      icon: Icon(
+                                        Icons.add,
+                                        size: 50,
+                                        color: kTextColor,
+                                      )
+                                  ),
                                 ),
                               ),
                             ),
@@ -158,7 +213,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   borderRadius: BorderRadius.circular(18)
                                 ),
                                 child: Text(
-                                    "bouton",
+                                    "ADD TO CART",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
