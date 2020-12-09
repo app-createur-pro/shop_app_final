@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:my_shop/home_screen.dart';
+import 'package:my_shop/screens/home_screen.dart';
 
 void main() {
   runApp(ShopApp());
@@ -8,7 +8,7 @@ void main() {
 
 class ShopApp extends StatelessWidget {
 
-  String title = "Shop App";
+  final String title = "Shop App";
 
   @override
   Widget build(BuildContext context) {

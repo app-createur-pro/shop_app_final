@@ -1,10 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_shop/product.dart';
-import 'package:my_shop/product_details_screen.dart';
+import 'package:my_shop/model/product.dart';
 
-import 'product_card_widget.dart';
+import '../components/product_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
 

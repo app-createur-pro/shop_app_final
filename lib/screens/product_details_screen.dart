@@ -1,14 +1,15 @@
 
 import 'package:flutter/material.dart';
-import 'package:my_shop/add_remove_button_widget.dart';
-import 'package:my_shop/dropdown_button_widget.dart';
-import 'package:my_shop/raised_button_widget.dart';
-import 'package:my_shop/themes.dart';
+import 'package:my_shop/components/add_remove_button_widget.dart';
+import 'package:my_shop/components/dropdown_button_widget.dart';
+import 'package:my_shop/components/raised_button_widget.dart';
+import 'package:my_shop/resources/themes.dart';
 
-import 'product.dart';
-import 'subtitle_product_widget.dart';
-import 'title_product_diget.dart';
-import 'extensions.dart';
+import '../model/product.dart';
+import '../components/subtitle_product_widget.dart';
+import '../components/title_product_diget.dart';
+import '../utils/extensions.dart';
+import 'cart_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
 
@@ -33,7 +34,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         actions: [
           IconButton(
             icon: Image.asset('assets/icons/shopping-cart.png'),
-            onPressed: () => print("j'appuie sur le panier"),
+            onPressed: () {
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartScreen()
+                  )
+              );
+            },
           )
         ],
       ),
@@ -130,7 +137,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               Spacer(),
                               Expanded(
                                 flex: 8,
-                                child: RaisedButtonWidget(backgroundColor: widget.product.backgroundColor,),
+                                child: RaisedButtonWidget(title: "ADD TO CART", backgroundColor: widget.product.backgroundColor,),
                               )
                             ],
                           ),

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class RaisedButtonWidget extends StatelessWidget {
 
   final Color backgroundColor;
+  final String title;
 
   const RaisedButtonWidget({
     Key key,
     this.backgroundColor = Colors.grey,
+    @required this.title,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class RaisedButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(18)
       ),
       child: Text(
-        "ADD TO CART",
+        title,
         style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
