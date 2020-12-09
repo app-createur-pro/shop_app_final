@@ -1,20 +1,34 @@
 
 import 'package:flutter/material.dart';
+import 'package:my_shop/add_remove_button_widget.dart';
+import 'package:my_shop/dropdown_button_widget.dart';
+import 'package:my_shop/raised_button_widget.dart';
 import 'package:my_shop/themes.dart';
 
+import 'product.dart';
+import 'subtitle_product_widget.dart';
+import 'title_product_diget.dart';
+import 'extensions.dart';
+
 class ProductDetailsScreen extends StatefulWidget {
+
+  final Product product;
+
+  const ProductDetailsScreen({
+    Key key,
+    @required this.product}) : super(key: key);
+
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: widget.product.backgroundColor,
         elevation: 0,
         actions: [
           IconButton(
@@ -23,7 +37,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           )
         ],
       ),
-      backgroundColor: Colors.grey,
+      backgroundColor:  widget.product.backgroundColor,
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return SizedBox(
@@ -36,7 +50,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   child: Container(
                     height: constraints.maxHeight*0.35,
                     width: constraints.maxWidth,
-                    color: Colors.grey,
+                    color: widget.product.backgroundColor,
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
                       child: Column(
@@ -46,39 +60,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Sneakers Category",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              Text(
-                                "Product name",
-                                style: Theme.of(context).textTheme.headline4.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              )
+                              SubtitleProductWidget(text: "Sneakers Category"),
+                              TitleProductWidget(text: widget.product.title,)
                             ],
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                  "Price",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                  ),
-                              ),
-                              Text(
-                                  "120 €",
-                                style: Theme.of(context).textTheme.headline4.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              )
+                              SubtitleProductWidget(text: "Price",),
+                              TitleProductWidget(text: widget.product.price.displayPriceInEuros())
                             ],
                           ),
                         ],
@@ -99,134 +89,53 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     padding: const EdgeInsets.only(top: 85.0, left: 25, right: 25),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                                child: Text(
-                                    "En stock",
-                                  style: TextStyle(
-                                    color: kTextColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16
-                                  ),
-                                )
-                            ),
-                            Expanded(
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(30),
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                      "En stock",
+                                    style: TextStyle(
+                                      color: kTextColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16
                                     ),
-                                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-                                    child: DropdownButton(
-                                      hint: Text(
-                                        "sizes",
-                                        style: TextStyle(
-                                          color: kTextColor
-                                        ),
-                                      ),
-                                      value: "36",
-                                      underline: Container(),
-                                      icon: Icon(
-                                        Icons.arrow_drop_down,
-                                        color: Colors.grey,
-                                      ),
-                                      items: [
-                                        DropdownMenuItem(
-                                          value: "36",
-                                          child: Text(
-                                            "36"
-                                          ),
-                                        ),
-                                        DropdownMenuItem(
-                                          value: "37",
-                                          child: Text(
-                                              "37"
-                                          ),
-                                        ),
-                                      ],
-                                      onChanged: (value) {
-
-                                      },
-                                    )
-                                )
-                            )
-                          ],
+                                  )
+                              ),
+                              Expanded(
+                                  child: DropdownButtonWidget(backgroundColor: widget.product.backgroundColor,)                              )
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 22,),
-                        Text("Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair"),
-                        SizedBox(height: 22,),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey
-                                  ),
-                                  shape: BoxShape.circle
-                                ),
-                                child: FittedBox(
-                                  child: IconButton(
-                                      padding: EdgeInsets.all(0),
-                                      icon: Icon(
-                                      Icons.remove,
-                                        size: 50,
-                                        color: kTextColor,
-                                    )
-                                  ),
-                                ),
+                        Spacer(),
+                        Expanded(
+                            flex: 4,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text(widget.product.description)
+                                ],
                               ),
-                            ),
-                            Expanded(
-                                child: Text(
-                                  "1",
-                                  textAlign: TextAlign.center,)
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey
-                                    ),
-                                    shape: BoxShape.circle
-                                ),
-                                child: FittedBox(
-                                  child: IconButton(
-                                      padding: EdgeInsets.all(0),
-                                      icon: Icon(
-                                        Icons.add,
-                                        size: 50,
-                                        color: kTextColor,
-                                      )
-                                  ),
-                                ),
+                            )),
+                        Spacer(),
+                        Expanded(
+                          flex: 2,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: AddRemoveButtonWidget()
                               ),
-                            ),
-                            Spacer(),
-                            Expanded(
-                              flex: 8,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)
-                                ),
-                                child: Text(
-                                    "ADD TO CART",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15
-                                  ),
-                                ),
-                                color: Colors.grey,
-                                onPressed: () => print("rien"),
-                              ),
-                            )
-                          ],
-                        )
-
+                              Spacer(),
+                              Expanded(
+                                flex: 8,
+                                child: RaisedButtonWidget(backgroundColor: widget.product.backgroundColor,),
+                              )
+                            ],
+                          ),
+                        ),
+                        Spacer()
                       ],
                     ),
                   ),
@@ -235,7 +144,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   top: (constraints.maxHeight * 0.6)*0.35,
                   left: constraints.maxWidth*0.35,
                   child: Image.asset(
-                    'assets/images/black-shoe.png',
+                    widget.product.image,
                     width: constraints.maxWidth/2,
                   ),
                 )

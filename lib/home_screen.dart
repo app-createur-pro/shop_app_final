@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:my_shop/product.dart';
 import 'package:my_shop/product_details_screen.dart';
 
+import 'product_card_widget.dart';
+
 class HomeScreen extends StatefulWidget {
 
   HomeScreen({Key key, @required this.title}) : super(key: key);
@@ -49,41 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           itemCount: _products.length,
           itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                          ProductDetailsScreen()
-                      )
-                    );
-                  },
-                  child: Container(
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: _products[index].backgroundColor,
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: Image.asset(_products[index].image),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(_products[index].title),
-                ),
-                Text(_products[index].price.toStringAsFixed(0) + " €"),
-              ],
-            );
+            return ProductCardWidget(
+              products: _products,
+              index: index,);
           }),
     );
   }
 
-
 }
+
