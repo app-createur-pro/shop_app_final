@@ -2,11 +2,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop/components/add_remove_button_widget.dart';
 import 'package:my_shop/components/raised_button_widget.dart';
+import 'package:my_shop/model/product.dart';
+import 'package:my_shop/providers/cart_provider.dart';
 import 'package:my_shop/resources/themes.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final _cartProvider = Provider.of<CartProvider>(context);
+    final _cartMap = _cartProvider.products;
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -32,14 +39,15 @@ class CartScreen extends StatelessWidget {
               flex: 8,
               child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
+                    Product _currentProduct = _cartMap.values.elementAt(index);
                     return Card(
                       child: ListTile(
                         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
                         leading: Image.asset(
-                          "assets/images/black-shoe.png",
+                          _currentProduct.image,
                           height: 200,
                         ),
-                        title: Text("Nom produit"),
+                        title: Text(_currentProduct.title),
                         subtitle: FittedBox(
                           child: Text(
                               "Sneakers Category"
@@ -72,7 +80,7 @@ class CartScreen extends StatelessWidget {
                       height: 10,
                     );
                   },
-                  itemCount: 1)
+                  itemCount: _cartMap.length)
             ),
             Expanded(
               flex: 3,

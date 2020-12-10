@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 
 class Product {
   final String title, description, image;
+  final UniqueKey id;
   final Color backgroundColor;
   final double price;
 
-  Product(this.title, this.description, this.image, this.backgroundColor, this.price);
+  Product(
+      this.title,
+      this.description,
+      this.image,
+      this.backgroundColor,
+      this.price) : id = UniqueKey();
 
   static List<Product> products =
       [

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:my_shop/components/add_remove_button_widget.dart';
 import 'package:my_shop/components/dropdown_button_widget.dart';
 import 'package:my_shop/components/raised_button_widget.dart';
+import 'package:my_shop/providers/cart_provider.dart';
 import 'package:my_shop/resources/themes.dart';
+import 'package:provider/provider.dart';
 
 import '../model/product.dart';
 import '../components/subtitle_product_widget.dart';
@@ -27,6 +29,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final _cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: widget.product.backgroundColor,
@@ -137,7 +142,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               Spacer(),
                               Expanded(
                                 flex: 8,
-                                child: RaisedButtonWidget(title: "ADD TO CART", backgroundColor: widget.product.backgroundColor,),
+                                child: RaisedButtonWidget(
+                                  title: "ADD TO CART",
+                                  backgroundColor: widget.product.backgroundColor,
+                                  onClickCallback: () {
+                                    Product product = widget.product;
+                                    _cartProvider.addProduct(product);
+                                  },
+                                ),
                               )
                             ],
                           ),
