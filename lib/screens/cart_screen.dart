@@ -6,6 +6,7 @@ import 'package:my_shop/model/product.dart';
 import 'package:my_shop/providers/cart_provider.dart';
 import 'package:my_shop/resources/themes.dart';
 import 'package:provider/provider.dart';
+import 'package:my_shop/utils/extensions.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -58,14 +59,18 @@ class CartScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
-                                child: AddRemoveButtonWidget(),
+                                child: AddRemoveButtonWidget(
+                                  numberOfItemsToDisplay: _cartProvider.productQuantity(_currentProduct).toString(),
+                                  pressedLessButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.REMOVE),
+                                  pressedPlusButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.ADD),
+                                ),
                                 flex: 6,
                               ),
                               Spacer(
                                 flex: 1,
                               ),
                               Expanded(
-                                child: Text("87 €"),
+                                child: Text(_cartProvider.productAmount(_currentProduct).displayPriceInEuros()),
                                 flex: 3,
                               )
                             ],

@@ -6,6 +6,11 @@ class Product {
   final UniqueKey id;
   final Color backgroundColor;
   final double price;
+  int numberInCart = 1;
+
+  double get amountInCartForSameProduct {
+    return numberInCart * price;
+  }
 
   Product(
       this.title,

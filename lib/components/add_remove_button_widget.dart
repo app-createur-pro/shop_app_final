@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_shop/resources/themes.dart';
 
-class AddRemoveButtonWidget extends StatefulWidget {
+class AddRemoveButtonWidget extends StatelessWidget {
+
+  final VoidCallback pressedPlusButton;
+  final VoidCallback pressedLessButton;
+  final String numberOfItemsToDisplay;
+
   const AddRemoveButtonWidget({
     Key key,
+    @required this.pressedPlusButton,
+    @required this.pressedLessButton,
+    @required this.numberOfItemsToDisplay,
   }) : super(key: key);
-
-  @override
-  _AddRemoveButtonWidgetState createState() => _AddRemoveButtonWidgetState();
-}
-
-class _AddRemoveButtonWidgetState extends State<AddRemoveButtonWidget> {
-
-  int _numberOfItemsToAdd = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +35,14 @@ class _AddRemoveButtonWidgetState extends State<AddRemoveButtonWidget> {
                     size: 50,
                     color: kTextColor,
                   ),
-                onPressed: () {
-                    if (_numberOfItemsToAdd > 1) {
-                      setState(() {
-                        _numberOfItemsToAdd--;
-                      });
-                    }
-                },
+                onPressed: pressedLessButton
               ),
             ),
           ),
         ),
         Expanded(
             child: Text(
-              _numberOfItemsToAdd.toString(),
+              numberOfItemsToDisplay,
               textAlign: TextAlign.center,)
         ),
         Expanded(
@@ -68,11 +62,7 @@ class _AddRemoveButtonWidgetState extends State<AddRemoveButtonWidget> {
                     size: 50,
                     color: kTextColor,
                   ),
-                onPressed: () {
-                    setState(() {
-                      _numberOfItemsToAdd++;
-                    });
-                },
+                onPressed: pressedPlusButton,
               ),
             ),
           ),
