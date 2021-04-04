@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_shop/components/cart_app_bar_item_widget.dart';
 import 'package:my_shop/model/product.dart';
-
 import '../components/product_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,12 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => print("bouton menu"),
         ),
         actions: [
-          IconButton(
-            icon: Image.asset(
-              "assets/icons/shopping-cart-grey.png",
-            ),
-            onPressed: () => print("j'appuie sur le panier"),
-          )
+          CartAppBarItemWidget()
         ],
         title: Text(widget.title),
       ),

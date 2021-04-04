@@ -115,7 +115,7 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Text("VAT (20%)"),
                           Text(
-                              "20 €",
+                              (_cartProvider.productsAmount*0.2).displayPriceInEuros(),
                           ),
                         ],
                       ),
@@ -130,7 +130,7 @@ class CartScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold
                             ),),
                           Text(
-                              "100 €",
+                             _cartProvider.productsAmount.displayPriceInEuros(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold
                             ),

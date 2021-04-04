@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_shop/components/add_remove_button_widget.dart';
+import 'package:my_shop/components/cart_app_bar_item_widget.dart';
 import 'package:my_shop/components/dropdown_button_widget.dart';
 import 'package:my_shop/components/raised_button_widget.dart';
 import 'package:my_shop/providers/cart_provider.dart';
@@ -27,6 +28,8 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
+  int _productQuantity = 1;
+
   @override
   Widget build(BuildContext context) {
 
@@ -37,16 +40,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         backgroundColor: widget.product.backgroundColor,
         elevation: 0,
         actions: [
-          IconButton(
-            icon: Image.asset('assets/icons/shopping-cart.png'),
-            onPressed: () {
-              Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CartScreen()
-                  )
-              );
-            },
-          )
+          CartAppBarItemWidget()
         ],
       ),
       backgroundColor:  widget.product.backgroundColor,
@@ -137,7 +131,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               Expanded(
                                 flex: 3,
-                                child: AddRemoveButtonWidget()
+                                child: AddRemoveButtonWidget(
+                                  numberOfItemsToDisplay: _productQuantity.toString(),
+                                  pressedLessButton: () {
+                                    setState(() {
+                                      if(_productQuantity > 1) {
+                                        _productQuantity--;
+                                      }
+                                    });
+                                  },
+                                  pressedPlusButton: () {
+                                    setState(() {
+                                      _productQuantity++;
+                                    });},
+                                )
                               ),
                               Spacer(),
                               Expanded(
@@ -147,7 +154,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   backgroundColor: widget.product.backgroundColor,
                                   onClickCallback: () {
                                     Product product = widget.product;
-                                    _cartProvider.addProduct(product);
+                                    _cartProvider.addProduct(product, _productQuantity);
                                   },
                                 ),
                               )

@@ -19,7 +19,7 @@ class CartProvider with ChangeNotifier {
   double get productsAmount {
     double amount = 0.0;
     _products.forEach((key, value) {
-      return value.amountInCartForSameProduct;
+      amount += value.amountInCartForSameProduct;
     });
     return amount;
   }
@@ -36,17 +36,18 @@ class CartProvider with ChangeNotifier {
     return numberInCart;
   }
 
-  void addProduct(Product product) {
-    if (_products.containsKey(product.id)){
-      _products[product.id.toString()].numberInCart++;
+  void addProduct(Product product, int quantity) {
+    if (_products.containsKey(product.id.toString())){
+      _products[product.id.toString()].numberInCart += quantity;
     } else {
       _products.putIfAbsent(product.id.toString(), () => product);
+      _products[product.id.toString()].numberInCart += quantity-1;
     }
     notifyListeners();
   }
 
   void changeProductQuantity(Product product, ChangeQuantity changeQuantity) {
-    if (_products.containsKey(product.id)){
+    if (_products.containsKey(product.id.toString())){
       if(changeQuantity == ChangeQuantity.ADD) {
         _products[product.id.toString()].numberInCart++;
       } else {
