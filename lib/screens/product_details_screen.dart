@@ -6,6 +6,7 @@ import 'package:my_shop/components/dropdown_button_widget.dart';
 import 'package:my_shop/components/raised_button_widget.dart';
 import 'package:my_shop/providers/cart_provider.dart';
 import 'package:my_shop/resources/themes.dart';
+import 'package:my_shop/utils/strings.dart';
 import 'package:provider/provider.dart';
 
 import '../model/product.dart';
@@ -73,7 +74,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SubtitleProductWidget(text: "Price",),
+                              SubtitleProductWidget(text: Strings.price,),
                               TitleProductWidget(text: widget.product.price.displayPriceInEuros())
                             ],
                           ),
@@ -101,7 +102,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             children: [
                               Expanded(
                                   child: Text(
-                                      "En stock",
+                                      Strings.available,
                                     style: TextStyle(
                                       color: kTextColor,
                                       fontWeight: FontWeight.w600,
@@ -150,7 +151,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               Expanded(
                                 flex: 8,
                                 child: RaisedButtonWidget(
-                                  title: "ADD TO CART",
+                                  title: Strings.addToCart,
                                   backgroundColor: widget.product.backgroundColor,
                                   onClickCallback: () {
                                     Product product = widget.product;

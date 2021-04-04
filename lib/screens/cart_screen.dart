@@ -5,6 +5,7 @@ import 'package:my_shop/components/raised_button_widget.dart';
 import 'package:my_shop/model/product.dart';
 import 'package:my_shop/providers/cart_provider.dart';
 import 'package:my_shop/resources/themes.dart';
+import 'package:my_shop/utils/strings.dart';
 import 'package:provider/provider.dart';
 import 'package:my_shop/utils/extensions.dart';
 
@@ -24,7 +25,7 @@ class CartScreen extends StatelessWidget {
           color: kTextColor
         ),
         title: Text(
-          "Cart",
+          Strings.cartTitle,
           style: TextStyle(
             color: kTextColor,
             fontSize: 18
@@ -104,7 +105,7 @@ class CartScreen extends StatelessWidget {
                     );
                   },
                   itemCount: _cartMap.length)
-              : Text("Aucun article dans votre panier")
+              : Text(Strings.cartNoItem)
             ),
             Expanded(
               flex: 3,
@@ -132,7 +133,7 @@ class CartScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("VAT (20%)"),
+                          Text(Strings.vatText),
                           Text(
                               (_cartProvider.productsAmount*0.2).displayPriceInEuros(),
                           ),
@@ -144,7 +145,7 @@ class CartScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "TOTAL VAT INCLUDED",
+                            Strings.vatTextNotIncluded,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold
                             ),),
@@ -160,7 +161,7 @@ class CartScreen extends StatelessWidget {
                     Expanded(
                         child: SizedBox(
                           width: double.infinity,
-                            child: RaisedButtonWidget(title: "CHECKOUT",)
+                            child: RaisedButtonWidget(title: Strings.checkoutButton,)
                         )
                     )
                   ]
