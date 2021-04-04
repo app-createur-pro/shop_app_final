@@ -59,6 +59,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeProduct(Product product) {
+    _products.removeWhere((key, value) => key == product.id.toString());
+    notifyListeners();
+  }
+
 
   //remove product
   //changer la quantité de produits

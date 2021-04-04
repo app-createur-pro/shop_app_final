@@ -38,44 +38,62 @@ class CartScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
               flex: 8,
-              child: ListView.separated(
+              child:
+              (_cartMap.length > 0)
+              ? ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
                     Product _currentProduct = _cartMap.values.elementAt(index);
-                    return Card(
-                      child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-                        leading: Image.asset(
-                          _currentProduct.image,
-                          height: 200,
-                        ),
-                        title: Text(_currentProduct.title),
-                        subtitle: FittedBox(
-                          child: Text(
-                              "Sneakers Category"
+                    return Dismissible(
+                      key: GlobalKey(),
+                      direction: DismissDirection.endToStart,
+                      background: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.delete_sweep,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                      onDismissed: (direction) {
+                        _cartProvider.removeProduct(_currentProduct);
+                      },
+                      child: Card(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+                          leading: Image.asset(
+                            _currentProduct.image,
+                            height: 200,
                           ),
-                          fit: BoxFit.fitWidth,
-                        ),
-                        trailing: SizedBox(
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: AddRemoveButtonWidget(
-                                  numberOfItemsToDisplay: _cartProvider.productQuantity(_currentProduct).toString(),
-                                  pressedLessButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.REMOVE),
-                                  pressedPlusButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.ADD),
+                          title: Text(_currentProduct.title),
+                          subtitle: FittedBox(
+                            child: Text(
+                                "Sneakers Category"
+                            ),
+                            fit: BoxFit.fitWidth,
+                          ),
+                          trailing: SizedBox(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: AddRemoveButtonWidget(
+                                    numberOfItemsToDisplay: _cartProvider.productQuantity(_currentProduct).toString(),
+                                    pressedLessButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.REMOVE),
+                                    pressedPlusButton: () => _cartProvider.changeProductQuantity(_currentProduct, ChangeQuantity.ADD),
+                                  ),
+                                  flex: 6,
                                 ),
-                                flex: 6,
-                              ),
-                              Spacer(
-                                flex: 1,
-                              ),
-                              Expanded(
-                                child: Text(_cartProvider.productAmount(_currentProduct).displayPriceInEuros()),
-                                flex: 3,
-                              )
-                            ],
+                                Spacer(
+                                  flex: 1,
+                                ),
+                                Expanded(
+                                  child: Text(_cartProvider.productAmount(_currentProduct).displayPriceInEuros()),
+                                  flex: 3,
+                                )
+                              ],
+                            ),
+                            width: 100,
                           ),
-                          width: 100,
                         ),
                       ),
                     );
@@ -86,6 +104,7 @@ class CartScreen extends StatelessWidget {
                     );
                   },
                   itemCount: _cartMap.length)
+              : Text("Aucun article dans votre panier")
             ),
             Expanded(
               flex: 3,
