@@ -8,7 +8,7 @@ class DropdownButtonWidget extends StatefulWidget {
   final Color backgroundColor;
   
   const DropdownButtonWidget({
-    Key key, 
+    Key? key,
     this.backgroundColor = Colors.grey,
   }) : super(key: key);
 
@@ -56,9 +56,9 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
               ),
             ),
           ],
-          onChanged: (value) {
+          onChanged: (String? value) {
             setState(() {
-              _currentSize = value;
+              _currentSize = value ?? 'value';
             });
           },
         )

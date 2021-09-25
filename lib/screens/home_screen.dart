@@ -7,7 +7,7 @@ import '../components/product_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  HomeScreen({Key key, @required this.title}) : super(key: key);
+  HomeScreen({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override

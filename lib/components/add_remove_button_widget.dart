@@ -8,10 +8,10 @@ class AddRemoveButtonWidget extends StatelessWidget {
   final String numberOfItemsToDisplay;
 
   const AddRemoveButtonWidget({
-    Key key,
-    @required this.pressedPlusButton,
-    @required this.pressedLessButton,
-    @required this.numberOfItemsToDisplay,
+    Key? key,
+    required this.pressedPlusButton,
+    required this.pressedLessButton,
+    required this.numberOfItemsToDisplay,
   }) : super(key: key);
 
   @override

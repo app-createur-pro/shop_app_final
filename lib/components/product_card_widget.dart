@@ -9,9 +9,9 @@ class ProductCardWidget extends StatelessWidget {
   final int index;
 
   const ProductCardWidget({
-    Key key,
-    @required List<Product> products,
-    @required this.index,
+    Key? key,
+    required List<Product> products,
+    required this.index,
   }) : _products = products, super(key: key);
 
   final List<Product> _products;
@@ -25,8 +25,8 @@ class ProductCardWidget extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetailsScreen(product: _products[index],)
+                      builder: (context) => ProductDetailsScreen(product: _products[index],
+                    )
                 )
             );
           },

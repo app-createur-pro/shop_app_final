@@ -13,15 +13,14 @@ import '../model/product.dart';
 import '../components/subtitle_product_widget.dart';
 import '../components/title_product_diget.dart';
 import '../utils/extensions.dart';
-import 'cart_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
 
   final Product product;
 
   const ProductDetailsScreen({
-    Key key,
-    @required this.product}) : super(key: key);
+    Key? key,
+    required this.product}) : super(key: key);
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();

@@ -161,7 +161,7 @@ class CartScreen extends StatelessWidget {
                     Expanded(
                         child: SizedBox(
                           width: double.infinity,
-                            child: RaisedButtonWidget(title: Strings.checkoutButton,)
+                            child: RaisedButtonWidget(title: Strings.checkoutButton, onClickCallback: () {  },)
                         )
                     )
                   ]

@@ -9,18 +9,22 @@ class RaisedButtonWidget extends StatelessWidget {
   final VoidCallback onClickCallback;
 
   const RaisedButtonWidget({
-    Key key,
+    Key? key,
     this.backgroundColor = Colors.grey,
-    @required this.title,
-    @required this.onClickCallback,
+    required this.title,
+    required this.onClickCallback,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18)
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18)
+        ),
+        primary: backgroundColor,
       ),
+
       child: Text(
         title,
         style: TextStyle(
@@ -29,7 +33,6 @@ class RaisedButtonWidget extends StatelessWidget {
             fontSize: 15
         ),
       ),
-      color: backgroundColor,
       onPressed: onClickCallback,
     );
   }
